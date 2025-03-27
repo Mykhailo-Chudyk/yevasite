@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Cormorant_Garamond } from "next/font/google";
+import { Cormorant_Garamond, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  variable: "--font-dancing-script",
+});
 
 const arsenica = Cormorant_Garamond({
   weight: "400",
@@ -33,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${arsenica.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${arsenica.variable} ${dancingScript.variable} antialiased`}
       >
         <Header />
         {children}

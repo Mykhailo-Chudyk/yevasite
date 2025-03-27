@@ -8,7 +8,7 @@ const arsenal = Arsenal({
 
 export default function Header() {
   return (
-    <header className="w-full flex justify-end py-6 px-4 max-w-[1600px]">
+    <header className="w-full flex justify-end py-6 px-4 max-w-[1600px] mx-auto">
       <h1 className={`${arsenal.className} text-2xl font-bold md:mr-8 mr-4`}>Yeva Yevtikhova</h1>
     </header>
   );
