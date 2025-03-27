@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Stage, Layer, Text, Line } from 'react-konva';
+import { Stage, Layer, Line } from 'react-konva';
 
 interface HandDrawnTextProps {
   text: string;
@@ -9,10 +9,11 @@ interface HandDrawnTextProps {
 }
 
 const HandDrawnText = ({ text, className }: HandDrawnTextProps) => {
-  const [lines, setLines] = useState<Array<{ points: number[] }>>([]);
-  const [isDrawing, setIsDrawing] = useState(false);
   const textRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [progress, setProgress] = useState(0);
+  const [points, setPoints] = useState<number[]>([]);
+  const animationRef = useRef<number>();
 
   useEffect(() => {
     if (textRef.current) {
@@ -24,27 +25,44 @@ const HandDrawnText = ({ text, className }: HandDrawnTextProps) => {
     }
   }, [text]);
 
-  const handleMouseDown = (e: any) => {
-    setIsDrawing(true);
-    const pos = e.target.getStage()?.getPointerPosition();
-    if (pos) {
-      setLines([...lines, { points: [pos.x, pos.y] }]);
+  useEffect(() => {
+    // Generate points for an oval shape
+    const centerX = dimensions.width / 2;
+    const centerY = dimensions.height / 2;
+    const radiusX = dimensions.width * 0.6;
+    const radiusY = dimensions.height * 0.6;
+    const numPoints = 100;
+    const newPoints: number[] = [];
+
+    for (let i = 0; i <= numPoints; i++) {
+      const angle = (i / numPoints) * 2 * Math.PI;
+      const x = centerX + radiusX * Math.cos(angle);
+      const y = centerY + radiusY * Math.sin(angle);
+      newPoints.push(x, y);
     }
-  };
 
-  const handleMouseMove = (e: any) => {
-    if (!isDrawing) return;
-    const stage = e.target.getStage();
-    const point = stage.getPointerPosition();
-    const lastLine = lines[lines.length - 1];
-    lastLine.points = lastLine.points.concat([point.x, point.y]);
+    setPoints(newPoints);
+  }, [dimensions]);
 
-    setLines([...lines.slice(0, -1), lastLine]);
-  };
+  useEffect(() => {
+    const animate = () => {
+      setProgress((prev) => {
+        const newProgress = prev + 0.005; // Slower animation
+        if (newProgress >= 1) return 0; // Reset to 0 for continuous loop
+        return newProgress;
+      });
+      animationRef.current = requestAnimationFrame(animate);
+    };
 
-  const handleMouseUp = () => {
-    setIsDrawing(false);
-  };
+    animationRef.current = requestAnimationFrame(animate);
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, []);
+
+  const currentPoints = points.slice(0, Math.floor(points.length * progress));
 
   return (
     <div className="relative">
@@ -54,25 +72,19 @@ const HandDrawnText = ({ text, className }: HandDrawnTextProps) => {
       <Stage
         width={dimensions.width}
         height={dimensions.height}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
         style={{ position: 'absolute', top: 0, left: 0 }}
       >
         <Layer>
-          {lines.map((line, i) => (
-            <Line
-              key={i}
-              points={line.points}
-              stroke="#42367e"
-              strokeWidth={2}
-              tension={0.5}
-              lineCap="round"
-              lineJoin="round"
-              globalCompositeOperation="source-over"
-            />
-          ))}
+          <Line
+            points={currentPoints}
+            stroke="#42367e"
+            strokeWidth={3}
+            tension={0.5}
+            lineCap="round"
+            lineJoin="round"
+            globalCompositeOperation="source-over"
+            dash={[5, 5]} // Add dashed effect for more hand-drawn feel
+          />
         </Layer>
       </Stage>
       <div className={className}>{text}</div>

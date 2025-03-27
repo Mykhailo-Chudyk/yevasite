@@ -1,6 +1,6 @@
 import Image from "next/image";
 import pointer from "./images/pointer.png";
-import ClientHandDrawnText from "@/components/ClientHandDrawnText";
+import ClientAnimatedOval from "@/components/ClientAnimatedOval";
 
 export default function Home() {
   return (
@@ -12,8 +12,11 @@ export default function Home() {
         <div className="absolute top-40 left-50">
           <h1 className="text-[93px] font-arsenica font-medium">it's</h1>
         </div>
-        <div className="absolute top-60 left-80">
-          <ClientHandDrawnText text="Yeva" className="text-[93px] font-dancing-script italic" />
+        <div className="absolute top-70 left-100">
+          <h1 className="text-[93px] font-dancing-script italic">Yeva</h1>
+        </div>
+        <div className="absolute top-60 left-80 min-w-[400px] min-h-[250px]">
+          <ClientAnimatedOval width={400} height={250} />
         </div>
         <div className="absolute top-120 left-55">
           <h1 className="text-[31px] font-arsenica font-medium">let me <span className="italic text-[#42367e] cursor-pointer">introduce</span> myself</h1>
