@@ -11,6 +11,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-base);
   --font-mono: var(--font-geist-mono);
+  --font-courier-prime: var(--font-courier-prime);
 }
 
 @mdark(prefers-color-scheme: light) {
