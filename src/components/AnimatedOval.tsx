@@ -58,7 +58,7 @@ const AnimatedOval = ({ width, height, color = "#42367e", strokeWidth = 3 }: Ani
     <Stage
       width={width}
       height={height}
-      style={{ position: 'absolute', top: 0, left: 0 }}
+      style={{ position: 'absolute', top: 0, left: 0, zIndex: 10 }}
     >
       <Layer>
         <Line
@@ -69,7 +69,7 @@ const AnimatedOval = ({ width, height, color = "#42367e", strokeWidth = 3 }: Ani
           lineCap="round"
           lineJoin="round"
           globalCompositeOperation="source-over"
-          dash={[5, 5]}
+          closed={true}
         />
       </Layer>
     </Stage>

@@ -13,7 +13,7 @@ const HandDrawnText = ({ text, className }: HandDrawnTextProps) => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [progress, setProgress] = useState(0);
   const [points, setPoints] = useState<number[]>([]);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number>(0);
 
   useEffect(() => {
     if (textRef.current) {
