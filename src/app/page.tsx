@@ -2,10 +2,12 @@ import Image from "next/image";
 import yeva from "./images/yeva.png";
 import Folder from "./components/Folder";
 import ScrollTrigger from "./components/ScrollTrigger";
+import CustomCursor from "./components/CustomCursor";
 
 export default function Home() {
   return (
     <div className="relative w-full flex flex-col items-center justify-center pb-30">
+      <CustomCursor />
       <div className="relative flex justify-center w-full">
         <div className="relative w-[700px] h-[600px] flex flex-col p-8">
           <div className="mt-8">
@@ -28,7 +30,7 @@ export default function Home() {
               <span className="text-[20px]">roud <span className="text-[#42367e]">Ukrainian</span> currently residing in San Francisco, I completed a worldwide journey around 7 countries to pursue education in <span className="text-[#42367e]">Finance & Economics</span>.</span>
             </p>
             <p className="text-[20px] font-arsenica italic mt-6 font-medium">With experience in <span className="text-[#42367e]">business & data analytics</span>, <span className="text-[#42367e]">venture capital</span>, <span className="text-[#42367e]">journalism</span>, and <span className="text-[#42367e]">marketing</span>, I find my purpose in using the technical skills I learned by embedding them into my creative endeavors to craft narratives and support ideas that contribute to <span className="text-[#42367e]">social change</span>.</p>
-            <p className="text-[20px] font-arsenica italic mt-6 font-medium">The most recent manifestation of my purpose became my authorship of <span className="text-[#42367e]">"Undervalued"</span>, a book covering the issue of gender gap in venture capital investment.</p>
+            <p className="text-[20px] font-arsenica italic mt-6 font-medium">The most recent manifestation of my purpose became my authorship of <span className="text-[#42367e]">&quot;Undervalued&quot;</span>, a book covering the issue of gender gap in venture capital investment.</p>
           </div>
           <div className="flex-2 flex flex-col p-8">
             <div className="flex flex-row">

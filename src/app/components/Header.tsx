@@ -1,13 +1,6 @@
-import { Arsenal } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
 import yevayevtikhova from "../images/yevayevtikhova.png";
-
-const arsenal = Arsenal({   
-  subsets: ['latin'],
-  style: 'italic',
-  weight: '400',
-});
 
 export default function Header() {
   return (
