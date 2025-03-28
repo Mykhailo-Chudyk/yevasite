@@ -61,3 +61,7 @@ body {
     font-size: 0.875rem;
   }
 }
+
+.desktop-text {
+  font-size: 93px !important;
+}

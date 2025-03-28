@@ -49,20 +49,22 @@ export default function ScrollTrigger() {
 
   return (
     <>
-      <div className="w-full flex-col items-center mt-10 ml-40">
-        <h1 className="text-[31px] font-arsenica font-medium">
-          let me <span className="italic text-[#42367e] cursor-pointer" onClick={scrollToDescription}>introduce</span> myself
-        </h1>
-      </div>
-      <div className="w-full flex-col items-center mt-0 ml-62">
-        <Image 
-          src={pointer} 
-          alt="pointer" 
-          width={35} 
-          height={35} 
-          className="ml-8 cursor-pointer hover:opacity-80" 
-          onClick={scrollToDescription} 
-        />
+      <div className="w-full flex flex-col items-center mt-10">
+        <div className="relative">
+          <h1 className="text-[31px] font-arsenica font-medium text-center">
+            let me <span className="italic text-[#42367e] cursor-pointer" onClick={scrollToDescription}>introduce</span> myself
+          </h1>
+          <div className="absolute left-1/2 -translate-x-1/2 mt-2">
+            <Image 
+              src={pointer} 
+              alt="pointer" 
+              width={35} 
+              height={35} 
+              className="cursor-pointer hover:opacity-80" 
+              onClick={scrollToDescription} 
+            />
+          </div>
+        </div>
       </div>
     </>
   );

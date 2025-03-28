@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${arsenica.variable} ${dancingScript.variable} ${courierPrime.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${arsenica.variable} ${dancingScript.variable} ${courierPrime.variable} antialiased w-full`}
       >
         <Header />
         {children}
