@@ -1,8 +1,7 @@
 import Image from "next/image";
-import pointer from "./images/pointer.png";
 import yeva from "./images/yeva.png";
 import Folder from "./components/Folder";
-
+import ScrollTrigger from "./components/ScrollTrigger";
 
 export default function Home() {
   return (
@@ -18,16 +17,11 @@ export default function Home() {
           <div className="mt-[-100px] ml-60">
             <Image src={yeva} alt="Yeva" width={275} height={93} className="object-contain" />
           </div>
-          <div className="w-full flex-col items-center mt-10 ml-40">
-            <h1 className="text-[31px] font-arsenica font-medium">let me <span className="italic text-[#42367e] cursor-pointer">introduce</span> myself</h1>
-          </div>
-          <div className="w-full flex-col items-center mt-0 ml-62">
-            <Image src={pointer} alt="pointer" width={35} height={35} className="ml-8 cursor-pointer" />
-          </div>
+          <ScrollTrigger />
         </div>
       </div>
       <div className="relative flex justify-center w-full">
-        <div className="flex flex-row gap-8 w-full max-w-[1200px] px-8 items-center">
+        <div className="flex flex-row gap-8 w-full max-w-[1200px] px-8 items-center" id="description">
           <div className="flex-3 flex flex-col p-8">
             <p className="text-[20px] font-arsenica italic font-medium">
               <span className="float-left text-[60px] leading-[60px] mr-2 not-italic">P</span>
