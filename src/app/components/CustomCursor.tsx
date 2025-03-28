@@ -31,7 +31,7 @@ const CustomCursor = () => {
         x: e.clientX,
         y: e.clientY,
         alpha: 1,
-        width: 4 // Start with larger width
+        width: 2 // Start with thinner width
       });
       
       // Limit trail length
@@ -56,7 +56,7 @@ const CustomCursor = () => {
           
           // Calculate the alpha and width for this segment
           const alpha = currentPoint.alpha - 0.01;
-          const width = currentPoint.width - 0.1;
+          const width = currentPoint.width - 0.05; // Slower width decrease
           
           if (alpha > 0) {
             // Create gradient for the line
