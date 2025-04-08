@@ -6,6 +6,7 @@ const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const trailRef = useRef<{ x: number; y: number; alpha: number; width: number }[]>([]);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -22,7 +23,26 @@ const CustomCursor = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
+    const clearTrail = () => {
+      // Instead of clearing immediately, start fading from the cursor position
+      if (trailRef.current.length > 0) {
+        const fadeInterval = setInterval(() => {
+          if (trailRef.current.length > 0) {
+            // Remove the first point (near cursor) instead of the last
+            trailRef.current.shift();
+          } else {
+            clearInterval(fadeInterval);
+          }
+        }, 50); // Remove a point every 50ms
+      }
+    };
+
     const updatePosition = (e: MouseEvent) => {
+      // Clear any existing timeout
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+
       // Set cursor position without offset
       setPosition({ x: e.clientX, y: e.clientY });
       
@@ -31,13 +51,16 @@ const CustomCursor = () => {
         x: e.clientX,
         y: e.clientY,
         alpha: 1,
-        width: 2 // Start with thinner width
+        width: 2
       });
       
       // Limit trail length
       if (trailRef.current.length > 30) {
         trailRef.current.shift();
       }
+
+      // Set new timeout to clear trail after 300ms of no movement
+      timeoutRef.current = setTimeout(clearTrail, 300);
     };
 
     const animate = () => {
@@ -54,9 +77,8 @@ const CustomCursor = () => {
           const prevPoint = trailRef.current[i - 1];
           const currentPoint = trailRef.current[i];
           
-          // Calculate the alpha and width for this segment
-          const alpha = currentPoint.alpha - 0.01;
-          const width = currentPoint.width - 0.05; // Slower width decrease
+          const alpha = currentPoint.alpha - 0.0003;
+          const width = currentPoint.width - 0.001;
           
           if (alpha > 0) {
             // Create gradient for the line
@@ -65,9 +87,7 @@ const CustomCursor = () => {
               currentPoint.x, currentPoint.y
             );
             
-            // Main color
             gradient.addColorStop(0, `rgba(66, 54, 126, ${alpha})`);
-            // Outer glow
             gradient.addColorStop(1, `rgba(66, 54, 126, ${alpha * 0.3})`);
             
             ctx.lineTo(currentPoint.x, currentPoint.y);
@@ -92,6 +112,9 @@ const CustomCursor = () => {
     return () => {
       window.removeEventListener('mousemove', updatePosition);
       window.removeEventListener('resize', resizeCanvas);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
     };
   }, []);
 
