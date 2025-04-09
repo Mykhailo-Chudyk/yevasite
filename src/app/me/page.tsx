@@ -49,7 +49,7 @@ export default function Me() {
             <div className="flex-3 flex flex-col p-4 sm:p-8 max-w-[600px] mb-10">
                 <p className="text-[20px] !text-[20px] font-arsenica italic font-medium">
                 <span className="float-left text-[60px] leading-[60px] mr-2 not-italic">T</span>
-                hese experiences shaped my understanding of the world and of myself. Over time, I've realized that my ideal place in the professional world is one where I can balance logic and technical skill with my natural affinity for writing and public speaking.</p>
+                hese experiences shaped my understanding of the world and of myself. Over time, I&apos;ve realized that my ideal place in the professional world is one where I can balance logic and technical skill with my natural affinity for writing and public speaking.</p>
             </div> 
           </div>
         </div>
