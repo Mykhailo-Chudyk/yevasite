@@ -1,5 +1,7 @@
 import Image from "next/image";
 import yeva from "./images/yeva.png";
+import hello from "./images/hello.png";
+import its from "./images/its.png";
 import Folder from "./components/Folder";
 import ScrollTrigger from "./components/ScrollTrigger";
 import CustomCursor from "./components/CustomCursor";
@@ -10,13 +12,13 @@ export default function Home() {
       <CustomCursor />
       <div className="relative flex justify-center w-full">
         <div className="relative w-full max-w-[700px] h-[600px] flex flex-col p-4 sm:p-8">
-          <div className="mt-8 ml-8 sm:ml-0">
-            <h1 className="font-arsenica italic font-medium desktop-text" style={{ fontSize: '73px' }}>hello<span className="not-italic">!</span></h1>
+          <div className="mt-8 ml-8 sm:ml-14">
+            <Image src={hello} alt="Hello" width={200} height={70} className="object-contain w-[180px] sm:w-[200px]" />
           </div>
-          <div className="mt-[-50px] sm:mt-[-65px] ml-20 sm:ml-30 z-10">
-            <h1 className="font-arsenica font-medium desktop-text" style={{ fontSize: '73px' }}>it&apos;s</h1>
+          <div className="mt-[10px] sm:mt-[8px] ml-25 sm:ml-38 z-10">
+            <Image src={its} alt="It's" width={300} height={100} className="object-contain w-[100px] sm:w-[110px]" />
           </div>
-          <div className="mt-[-50px] sm:mt-[-100px] ml-32 sm:ml-60 z-9">
+          <div className="mt-[-20px] sm:mt-[-75px] ml-32 sm:ml-65 z-9">
             <Image src={yeva} alt="Yeva" width={275} height={93} className="object-contain w-[230px] sm:w-[275px]" />
           </div>
           <ScrollTrigger />
