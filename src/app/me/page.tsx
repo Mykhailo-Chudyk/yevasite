@@ -6,7 +6,7 @@ import yevashadow from "../images/yevashadow.png";
 
 export default function Me() {
   return (
-    <div className="relative w-full flex flex-col items-center justify-center pb-60 mb-30">
+    <div className="relative w-full flex flex-col items-center justify-center">
       <div className="relative flex justify-center w-full">
         <div className="relative w-full max-w-[1000px] h-[600px] flex flex-col p-4 sm:p-8">
           <div className="mt-8 ml-8 sm:ml-14">
