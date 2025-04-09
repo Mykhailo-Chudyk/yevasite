@@ -4,6 +4,7 @@ import { Cormorant_Garamond, Dancing_Script } from "next/font/google";
 import { Courier_Prime } from "next/font/google";
 import "./globals.css";
 import Header from "@/app/components/Header";
+import CustomCursor from "@/app/components/CustomCursor";
 
 const dancingScript = Dancing_Script({
   subsets: ["latin"],
@@ -47,6 +48,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${arsenica.variable} ${dancingScript.variable} ${courierPrime.variable} antialiased w-full`}
       >
+        <CustomCursor />
         <Header />
         {children}
       </body>

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import violetfolder from '@/app/images/violetfolder.png'; 
 import grayfolder from '@/app/images/grayfolder.png';
 
@@ -11,11 +12,19 @@ interface FolderProps {
 }
 
 const Folder: React.FC<FolderProps> = ({ name, color = 'grey'}) => {
+  const router = useRouter();
   const folderImage = color === 'grey' ? grayfolder : violetfolder;
+
+  const handleClick = () => {
+    if (name === 'my story') {
+      router.push('/me');
+    }
+  };
 
   return (
     <div 
       className="flex flex-col items-center cursor-pointer transition-transform duration-200 hover:scale-102 p-2.5"
+      onClick={handleClick}
     >
       <Image 
         src={folderImage} 

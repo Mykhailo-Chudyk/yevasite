@@ -4,12 +4,10 @@ import hello from "./images/hello.png";
 import its from "./images/its.png";
 import Folder from "./components/Folder";
 import ScrollTrigger from "./components/ScrollTrigger";
-import CustomCursor from "./components/CustomCursor";
 
 export default function Home() {
   return (
     <div className="relative w-full flex flex-col items-center justify-center pb-30">
-      <CustomCursor />
       <div className="relative flex justify-center w-full">
         <div className="relative w-full max-w-[700px] h-[600px] flex flex-col p-4 sm:p-8">
           <div className="mt-8 ml-8 sm:ml-14">
