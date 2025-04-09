@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
+import pero from '../images/pero.svg';
 
 const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -33,7 +35,7 @@ const CustomCursor = () => {
           } else {
             clearInterval(fadeInterval);
           }
-        }, 50); // Remove a point every 50ms
+        }, 15); // Decreased from 50ms to 15ms for smoother animation
       }
     };
 
@@ -55,12 +57,12 @@ const CustomCursor = () => {
       });
       
       // Limit trail length
-      if (trailRef.current.length > 30) {
+      if (trailRef.current.length > 50) { // Increased from 30 to 50 points
         trailRef.current.shift();
       }
 
-      // Set new timeout to clear trail after 300ms of no movement
-      timeoutRef.current = setTimeout(clearTrail, 300);
+      // Set new timeout to clear trail after 100ms of no movement
+      timeoutRef.current = setTimeout(clearTrail, 100);
     };
 
     const animate = () => {
@@ -124,12 +126,18 @@ const CustomCursor = () => {
         ref={canvasRef}
         className="fixed top-0 left-0 w-full h-full pointer-events-none z-[100]"
       />
-      <div
-        className="fixed w-4 h-4 bg-[#42367e] rounded-full pointer-events-none z-[101]"
+      <Image
+        src={pero}
+        width={40}
+        height={40}
+        alt="Custom cursor"
+        className="fixed pointer-events-none z-[101]"
         style={{
           left: `${position.x}px`,
           top: `${position.y}px`,
-          transform: 'translate(-50%, -50%)',
+          transform: 'translate(-50%, -50%) rotate(15deg)',
+          marginTop: '-16px',
+          marginLeft: '12px',
         }}
       />
     </>
